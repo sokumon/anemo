@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR</title>
+    <script src="/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene xr-mode-ui="enabled: true">
+        <a-camera>
+            <a-cursor color="yellow"></a-cursor>
+        </a-camera>
+        <script>
+            AFRAME.registerComponent("nemo", {
+              init: function() {
+                let el = this.el;
+                el.addeve
+                this.myFunction = async function() {
+                    console.log(el.id)
+                    let response = await fetch(`${window.location.origin}/getnemo?feeling=${el.id}`)
+                    let response_json = await response.json()
+                    let src_string = "data:image/png;base64, " + atob(response_json["image"])
+                    let plane = document.getElementById("plane")
+                    plane.setAttribute("src", src_string)
+                };
+
+                el.addEventListener("click", this.myFunction);
+              },
+      
+              remove: function() {
+                this.el.removeEventListener("click", this.myFunction);
+              }
+            });
+      
+        </script>
+
+    
+        <a-plane id='plane' src="/test.jpeg" position="0 2 -5" width="30" height="15"  geometry=""></a-plane>
+        <a-text id="test" click-log="" position="-12.19031 8.11679 5.68562" value="How are you feeling" height="50" text="" scale="5 5 5" rotation="0 95.097 0"></a-text>
+        <a-text id="small" position="-12.80094 5.21551 5.16204" value="Click the apporiate color box" height="50" text="" scale="3 3 3" rotation="0 95.097 0"></a-text>
+        <a-box id="cry" nemo  event-set__enter="_event: mouseenter; color: #8FF7FF" class="feelingbox" color="tomato" depth="2" height="4" width="0.5" material="color: #030e45" geometry="height: 2; width: 2" position="-8.61918 0.33235 0"></a-box>
+        <a-box id="sad" nemo class="feelingbox" color="tomato" depth="2" height="4" width="0.5" material="color: #5a6bbf" geometry="height: 2; width: 2" position="-8.61918 0.33235 3.11736"></a-box>
+        <a-box id="neutral" nemo class="feelingbox" color="tomato" depth="2" height="4" width="0.5" material="color: #fafafa" geometry="height: 2; width: 2" position="-8.61918 0.33235 6.02055"></a-box>
+        <a-box id="happy"   nemo class="feelingbox" color="tomato" depth="2" height="4" width="0.5" material="color: #ffff00" geometry="height: 2; width: 2" position="-8.61918 0.33235 8.98325"></a-box>
+        <a-box id="astonished" nemo class="feelingbox" color="tomato" depth="2" height="4" width="0.5" material="color: #ff7300" geometry="height: 2; width: 2" position="-8.54809 0.33235 11.90227"></a-box>
+        <a-sky color="#6EBAA7" material="color: #000000" geometry=""></a-sky>
+    </a-scene>
+
+    <script>
+
+    </script>
+</body>
+</html>
