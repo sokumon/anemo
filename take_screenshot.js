@@ -43,8 +43,19 @@ async function takeScreenshot(feeling) {
 }
 
 async function test(){
-    let result  = await takeScreenshot("happy");
-    console.log(result);
+    let key_mappings={
+        "happy":104,
+        "sad":115,
+        "cry":99,
+        "neutral":1,
+        "astonished":111
+    }
+    let feelings = Object.keys(key_mappings);
+    for (let index = 0; index < feelings.length; index++) {
+        const element = feelings[index];
+        let result  = await takeScreenshot("happy");
+        console.log(result);
+    }
 }
 
 // test();
