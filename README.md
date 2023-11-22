@@ -2,10 +2,12 @@
 # Anemo
 
 AR and VR version of the Nemo Project
+
 I use Aframe and ar.js to build this
+
 It took me 3 days to build this for some reason
 
-
+In the vr version I use puppeteer to take screenshots on the fly
 
 
 ## Run this on VPS
